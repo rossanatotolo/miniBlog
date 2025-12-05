@@ -8,7 +8,6 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
-import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import lombok.Data;
 
@@ -33,8 +32,8 @@ public class Post {
     private Instant createdAt;
     @Column(nullable = false)
     private Instant updatedAt;
-    @OneToMany(mappedBy = "post", fetch = FetchType.LAZY)
-    private Set<Like> likes;
-    @OneToMany(mappedBy = "post", fetch = FetchType.LAZY)
-    private Set<Comment> comments;
+//    @OneToMany(mappedBy = "post", fetch = FetchType.LAZY)
+//    private Set<Like> likes;
+//    @OneToMany(mappedBy = "post", fetch = FetchType.LAZY)
+//    private Set<Comment> comments;
 }

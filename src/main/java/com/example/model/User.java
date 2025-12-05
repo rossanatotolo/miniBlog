@@ -24,15 +24,15 @@ public class User {
     private String email;
     @Column(name = "username", nullable = false, unique = true)
     private String username;
-    private String password;
+//    private String password;
     @Column(nullable = false)
     private Instant createdAt;
     @Column(nullable = false)
     private Instant updatedAt;
     @OneToMany(mappedBy = "author", fetch = FetchType.LAZY)
     private Set<Post> posts;
-    @OneToMany(mappedBy = "user", fetch = FetchType.LAZY)
-    private Set<Like> likes;
-    @OneToMany(mappedBy = "user", fetch = FetchType.LAZY)
-    private Set<Comment> comments;
+//    @OneToMany(mappedBy = "user", fetch = FetchType.LAZY)
+//    private Set<Like> likes;
+//    @OneToMany(mappedBy = "user", fetch = FetchType.LAZY)
+//    private Set<Comment> comments;
 }
