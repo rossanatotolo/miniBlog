@@ -8,11 +8,12 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.PrePersist;
+import jakarta.persistence.PreUpdate;
 import jakarta.persistence.Table;
 import lombok.Data;
 
 import java.time.Instant;
-import java.util.Set;
 
 @Data
 @Entity
@@ -32,8 +33,15 @@ public class Post {
     private Instant createdAt;
     @Column(nullable = false)
     private Instant updatedAt;
-//    @OneToMany(mappedBy = "post", fetch = FetchType.LAZY)
-//    private Set<Like> likes;
-//    @OneToMany(mappedBy = "post", fetch = FetchType.LAZY)
-//    private Set<Comment> comments;
+
+    @PrePersist
+    protected void onCreate() {
+        createdAt = Instant.now();
+        updatedAt = Instant.now();
+    }
+
+    @PreUpdate
+    protected void onUpdate() {
+        updatedAt = Instant.now();
+    }
 }

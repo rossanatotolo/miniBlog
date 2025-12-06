@@ -7,7 +7,6 @@ CREATE TABLE IF NOT EXISTS users (
      username                 VARCHAR(50) NOT NULL CHECK (username <> ''),
      password                 VARCHAR(255) NOT NULL CHECK (password <> ''),
      created_at               TIMESTAMP NOT NULL DEFAULT now(),
-     updated_at               TIMESTAMP NOT NULL DEFAULT now()
      );
 
 CREATE TABLE IF NOT EXISTS posts (

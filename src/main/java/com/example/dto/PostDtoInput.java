@@ -1,7 +1,7 @@
 package com.example.dto;
 
-import com.example.model.User;
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 import lombok.Data;
 
@@ -13,6 +13,6 @@ public class PostDtoInput {
     @NotBlank
     @Size(min = 2, max = 512)
     private String content;
-    @NotBlank
-    private User author;
+    @NotNull
+    private Long authorId;
 }

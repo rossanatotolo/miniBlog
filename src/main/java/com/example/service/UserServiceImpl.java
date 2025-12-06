@@ -52,9 +52,9 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public UserDtoOutput createUser(final UserDtoInput userDtoInput) {
-        if (userRepository.findAll().contains(UserMapper.toUser(userDtoInput))) {
-            log.warn("Этот пользователь уже существует.");
-            throw new DuplicatedDataException("Этот пользователь уже существует.");
+        if (userRepository.existsByEmailOrUsername(userDtoInput.getEmail(), userDtoInput.getUsername())) {
+            log.warn("Пользователь уже существует.");
+            throw new DuplicatedDataException("Пользователь уже существует.");
         }
 
         final User user = userRepository.save(UserMapper.toUser(userDtoInput));

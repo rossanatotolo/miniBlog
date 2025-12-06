@@ -1,12 +1,15 @@
 package com.example.dto;
 
-import com.example.model.User;
 import lombok.Data;
+
+import java.time.Instant;
 
 @Data
 public class PostDtoOutput {
     private Long id;
     private String title;
     private String content;
-    private User author;
+    private Long authorId;
+    private Instant createdAt;
+    private Instant updatedAt;
 }
