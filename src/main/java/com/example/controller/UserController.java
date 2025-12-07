@@ -21,38 +21,37 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
+@Validated
+@RestController
+@RequiredArgsConstructor
+@RequestMapping("/users")
 public class UserController {
-    @Validated
-    @RestController
-    @RequiredArgsConstructor
-    @RequestMapping("/users")
-    public class UserControllerAdmin {
-        private final UserService userService;
+    private final UserService userService;
 
-        @GetMapping
-        @ResponseStatus(HttpStatus.OK)
-        public List<UserDtoOutput> getAllUsers(
-                @RequestParam(required = false) final List<Long> ids,
-                @RequestParam(defaultValue = "0") @PositiveOrZero final int from,
-                @RequestParam(defaultValue = "10") @Positive final int size) {
-            return userService.getAllUsers(ids, from, size);
-        }
+    @GetMapping
+    @ResponseStatus(HttpStatus.OK)
+    public List<UserDtoOutput> getAllUsers(
+            @RequestParam(required = false) final List<Long> ids,
+            @RequestParam(defaultValue = "0") @PositiveOrZero final int page,
+            @RequestParam(defaultValue = "10") @Positive final int size) {
+        return userService.getAllUsers(ids, page, size);
+    }
 
-        @GetMapping("/{userId}")
-        public UserDtoOutput getUserById(@PathVariable @Positive final long userId) {
-            return userService.getUserById(userId);
-        }
+    @GetMapping("/{userId}")
+    public UserDtoOutput getUserById(@PathVariable @Positive final long userId) {
+        return userService.getUserById(userId);
+    }
 
-        @PostMapping
-        @ResponseStatus(HttpStatus.CREATED)
-        public UserDtoOutput createUser(@RequestBody @Valid final UserDtoInput userDtoInput) {
-            return userService.createUser(userDtoInput);
-        }
+    @PostMapping
+    @ResponseStatus(HttpStatus.CREATED)
+    public UserDtoOutput createUser(@RequestBody @Valid final UserDtoInput userDtoInput) {
+        return userService.createUser(userDtoInput);
+    }
 
-        @DeleteMapping("/{userId}")
-        @ResponseStatus(HttpStatus.NO_CONTENT)
-        public void deleteUser(@PathVariable final Long userId) {
-            userService.deleteUser(userId);
-        }
+    @DeleteMapping("/{userId}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public void deleteUser(@PathVariable final long userId) {
+        userService.deleteUser(userId);
     }
 }
+

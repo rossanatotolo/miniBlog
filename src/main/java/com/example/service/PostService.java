@@ -15,5 +15,5 @@ public interface PostService {
 
     PostDtoOutput updatePost(final long postId, final PostDtoUpdate postDtoUpdate);
 
-    void deletePost(final Long postId);
+    void deletePost(final long postId);
 }

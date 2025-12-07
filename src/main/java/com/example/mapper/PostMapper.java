@@ -38,7 +38,7 @@ public class PostMapper {
         post.setContent(postDtoInput.getContent());
 
         final User author = userRepository.findById(postDtoInput.getAuthorId())
-                .orElseThrow(() -> new NotFoundException("Пользователь с id = {} не найден." + postDtoInput.getAuthorId()));
+                .orElseThrow(() -> new NotFoundException(String.format("Пользователь с id = %d не найден.", postDtoInput.getAuthorId())));
 
         post.setAuthor(author);
 
@@ -49,6 +49,7 @@ public class PostMapper {
         if (postDtoUpdate.getTitle() != null) {
             post.setTitle(postDtoUpdate.getTitle());
         }
+
         if (postDtoUpdate.getContent() != null) {
             post.setContent(postDtoUpdate.getContent());
         }

@@ -32,11 +32,11 @@ public class PostController {
 
     @GetMapping
     @ResponseStatus(HttpStatus.OK)
-    public List<PostDtoOutput> getAllPosts(
+    public List<PostDtoOutput> getAllPostsByUser(
             @RequestParam(required = false) final List<Long> ids,
-            @RequestParam(defaultValue = "0") @PositiveOrZero final int from,
+            @RequestParam(defaultValue = "0") @PositiveOrZero final int page,
             @RequestParam(defaultValue = "10") @Positive final int size) {
-        return postService.getAllPosts(ids, from, size);
+        return postService.getAllPosts(ids, page, size);
     }
 
     @GetMapping("/{postId}")
