@@ -67,7 +67,7 @@ public class UserServiceImpl implements UserService {
     @Override
     public void deleteUser(final long userId) {
         if (!userRepository.existsById(userId)) {
-            log.warn("Пост для удаления не найден: id = {}.", userId);
+            log.warn("Пользователь для удаления не найден: id = {}.", userId);
             throw new NotFoundException(String.format("Пользователь с id = %d не найден.", userId));
         }
 

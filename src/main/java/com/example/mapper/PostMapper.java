@@ -17,6 +17,7 @@ import java.util.List;
 @RequiredArgsConstructor
 public class PostMapper {
     private final UserRepository userRepository;
+
     public PostDtoOutput toPostDto(final Post post) {
         final PostDtoOutput postDtoOutput = new PostDtoOutput();
 

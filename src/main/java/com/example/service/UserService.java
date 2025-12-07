@@ -6,7 +6,7 @@ import com.example.dto.UserDtoOutput;
 import java.util.List;
 
 public interface UserService {
-    List<UserDtoOutput> getAllUsers(List<Long> ids, final int from, final int size);
+    List<UserDtoOutput> getAllUsers(List<Long> ids, final int page, final int size);
 
     UserDtoOutput getUserById(long userId);
 
