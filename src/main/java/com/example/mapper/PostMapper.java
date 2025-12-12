@@ -10,6 +10,7 @@ import com.example.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
+import java.time.Instant;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -28,6 +29,9 @@ public class PostMapper {
         if (post.getAuthor() != null) {
             postDtoOutput.setAuthorId(post.getAuthor().getId());
         }
+
+        postDtoOutput.setCreatedAt(post.getCreatedAt());
+        postDtoOutput.setUpdatedAt(post.getUpdatedAt());
 
         return postDtoOutput;
     }
@@ -54,6 +58,8 @@ public class PostMapper {
         if (postDtoUpdate.getContent() != null) {
             post.setContent(postDtoUpdate.getContent());
         }
+
+        post.setUpdatedAt(Instant.now());
     }
 
     public List<PostDtoOutput> toListDto(Iterable<Post> posts) {

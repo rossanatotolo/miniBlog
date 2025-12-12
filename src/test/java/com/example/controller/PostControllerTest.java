@@ -48,7 +48,7 @@ class PostControllerTest {
 
         when(postService.getAllPosts(null, 0, 10)).thenReturn(posts);
 
-        mockMvc.perform(get("/posts"))
+        mockMvc.perform(get("/api/posts"))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.length()").value(1));
 
@@ -64,7 +64,7 @@ class PostControllerTest {
 
         when(postService.getPostById(anyLong())).thenReturn(postDtoOutput);
 
-        mockMvc.perform(get("/posts/1"))
+        mockMvc.perform(get("/api/posts/1"))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.id").value(postDtoOutput.getId()));
 
@@ -80,7 +80,7 @@ class PostControllerTest {
 
         when(postService.createPost(any(PostDtoInput.class))).thenReturn(postDtoOutput);
 
-        mockMvc.perform(post("/posts")
+        mockMvc.perform(post("/api/posts")
                         .contentType(MediaType.APPLICATION_JSON)
                         .content("{\"title\": \"title1\", \"content\": \"content1\", \"authorId\": 1}"))
                 .andExpect(status().isCreated())
@@ -94,7 +94,7 @@ class PostControllerTest {
     @DisplayName("PostController_deletePost")
     void testDeletePost() throws Exception {
 
-        mockMvc.perform(delete("/posts/1"))
+        mockMvc.perform(delete("/api/posts/1"))
                 .andExpect(status().isNoContent());
 
         verify(postService, times(1)).deletePost(anyLong());

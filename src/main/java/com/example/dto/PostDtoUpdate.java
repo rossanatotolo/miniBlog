@@ -5,8 +5,8 @@ import lombok.Data;
 
 @Data
 public class PostDtoUpdate {
-    @Size(min = 2, max = 255)
-    private String title;
     @Size(min = 2, max = 512)
+    private String title;
+    @Size(min = 2, max = 1000)
     private String content;
 }
