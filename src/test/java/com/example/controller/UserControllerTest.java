@@ -48,7 +48,7 @@ class UserControllerTest {
 
         when(userService.getAllUsers(null, 0, 10)).thenReturn(users);
 
-        mockMvc.perform(get("/users"))
+        mockMvc.perform(get("/api/users"))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.length()").value(1));
 
@@ -64,7 +64,7 @@ class UserControllerTest {
 
         when(userService.getUserById(anyLong())).thenReturn(userDtoOutput);
 
-        mockMvc.perform(get("/users/1"))
+        mockMvc.perform(get("/api/users/1"))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.id").value(userDtoOutput.getId()));
 
@@ -80,7 +80,7 @@ class UserControllerTest {
 
         when(userService.createUser(any(UserDtoInput.class))).thenReturn(userDtoOutput);
 
-        mockMvc.perform(post("/users")
+        mockMvc.perform(post("/api/users")
                         .contentType(MediaType.APPLICATION_JSON)
                         .content("{\"username\": \"username1\", \"email\": \"ex@mail.ru\"}"))
                 .andExpect(status().isCreated())
@@ -94,7 +94,7 @@ class UserControllerTest {
     @DisplayName("UserController_deleteUser")
     void testDeleteUser() throws Exception {
 
-        mockMvc.perform(delete("/users/1"))
+        mockMvc.perform(delete("/api/users/1"))
                 .andExpect(status().isNoContent());
 
         verify(userService, times(1)).deleteUser(anyLong());

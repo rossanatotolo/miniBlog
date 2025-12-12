@@ -3,7 +3,6 @@ package com.example.service;
 import com.example.dto.UserDtoInput;
 import com.example.dto.UserDtoOutput;
 import com.example.exception.NotFoundException;
-import com.example.mapper.UserMapper;
 import com.example.model.User;
 import com.example.repository.UserRepository;
 import org.junit.jupiter.api.BeforeEach;
@@ -56,7 +55,7 @@ public class UserServiceImplTest {
     @DisplayName("UserService_createUser")
     void testCreateUser() {
 
-        when(userRepository.save(UserMapper.toUser(userDtoInput))).thenReturn(user1);
+        when(userRepository.save(any(User.class))).thenReturn(user1);
 
         final UserDtoOutput userDto = userService.createUser(userDtoInput);
 

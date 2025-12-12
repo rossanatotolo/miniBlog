@@ -8,10 +8,10 @@ import lombok.Data;
 @Data
 public class PostDtoInput {
     @NotBlank
-    @Size(min = 2, max = 255)
+    @Size(min = 2, max = 512)
     private String title;
     @NotBlank
-    @Size(min = 2, max = 512)
+    @Size(min = 2, max = 1000)
     private String content;
     @NotNull
     private Long authorId;
